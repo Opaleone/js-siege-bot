@@ -1,0 +1,18 @@
+{
+  "name": "js-siege-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setCommands": "node src/functions/register-commands.js",
+    "deleteCommands": "node src/functions/delete-commands.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  }
+}
