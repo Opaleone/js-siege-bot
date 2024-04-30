@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const fs = require("fs");
+const config = require('../../../config.json')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,7 +15,7 @@ module.exports = {
         }
       }
 
-      const options = ["Rock", "Paper", "Scissors"];
+      const options = ["Rock\n:rock:", "Paper\n:roll_of_paper:", "Scissors\n:scissors:"];
       const randNum = Math.floor(Math.random() * options.length);
 
       return await interaction.reply(options[randNum]);
