@@ -3,6 +3,30 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const config = require('./config.json');
 
+process.on("uncaughtException", (e) => {
+	const curTimeDate = new Date().toJSON();
+	const msg = `${curTimeDate}: ${e.message} ::index.js::\n`;
+
+	fs.appendFile('errors.log', msg, (e) => {
+		if (e) console.error(e)
+	})
+	if (e.message.includes("handshake")) {
+			process.exit(1);
+	}
+});
+
+process.on("unhandledRejection", (e, promise) => {
+	const curTimeDate = new Date().toJSON();
+	const msg = `${curTimeDate}: ${e.message} ::index.js::\n`;
+
+	fs.appendFile('errors.log', msg, (e) => {
+		if (e) console.error(e)
+	})
+	if (e.message && e.message.includes("handshake")) {
+			process.exit(1);
+	}
+});
+
 const client = new Client({ 
   intents: [
     GatewayIntentBits.Guilds,
@@ -57,3 +81,5 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(config.token);
+
+utils.hawkeyeConnect();
